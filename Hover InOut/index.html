@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery - Hover In Out</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+        .container{
+            max-width: 900px;
+            margin:40px auto;
+        }
+        img{
+            width: 100%;
+        }
+        .hidden{
+            display: none;
+        }
+        .images{
+            width: 220px;
+            display: inline-block;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="images">
+            <img src="https://nikfashions.in/wp-content/uploads/2019/03/Sky-Blue-Plain-T-shirt-Mockup.jpg" class="shown">
+            <img src="https://jojimerch.com/wp-content/uploads/2020/08/ACIDBLACKASTROTback_739ef110-551d-4530-a410-039657bbc6a9_1024x1024@2x.png" class="hidden">
+        </div>
+        <div class="images">
+            <img src="https://cdn.shopify.com/s/files/1/0161/0482/products/AyeGear_T5_tshirt_with_pockets_clothing_fashion_style_hiking_fishing_cycling_scottevest_pickpocket_proof_concealed5.jpg?v=1502127434" class="shown">
+            <img src="https://image.spreadshirtmedia.com/image-server/v1/mp/productTypes/815/views/1/appearances/366,width=300,height=300,backgroundColor=f2f2f2.jpg" class="hidden">
+        </div>
+        <div class="images">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Blue_Tshirt.jpg/220px-Blue_Tshirt.jpg" class="shown">
+            <img src="https://contents.mediadecathlon.com/p1613535/k$a9f19526cc9f676ace426e478b470b9c/-run-dry-.jpg?format=auto&f=800x800" class="hidden">
+        </div>
+        <div class="images">
+            <img src="https://cdn.shopify.com/s/files/1/0070/7032/files/tshirt-business8-min_838a2996-f195-4c1d-a4d1-034bc0a9a095.jpg?v=1597402071" class="shown">
+            <img src="http://cdn.shopify.com/s/files/1/0866/6704/products/3110-t-shirt-a_grande.jpg?v=1540922250" class="hidden">
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $('.images').hover(function(){
+               $(this).find('.shown').css('display','none');
+               $(this).find('.hidden').css('display','block');
+            },function(){
+                $(this).find('.shown').css('display','block');
+               $(this).find('.hidden').css('display','none');
+            });
+        });
+    </script>
+</body>
+</html>

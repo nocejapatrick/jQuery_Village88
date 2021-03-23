@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery - Date Validations</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            outline: none;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .container{
+            max-width: 900px;
+            margin: 20px auto;
+            position: relative;
+        }
+        .container h1{
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .form-group{
+            margin: 20px;
+            display: flex;
+        }
+        .form-group label{
+            width: 10%;
+        }
+        .my-form{
+            padding:40px;
+            border: 1px solid #b1b1b1;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #00000017;
+        }
+        .my-form input[type="submit"]{
+            background: #b6ebff;
+            padding: 8px 20px;
+            border: none;
+            cursor: pointer;
+            transition: .2s all ease-in-out;
+        }
+        .my-form input[type="submit"]:hover{
+            background: #9acbde;
+        }
+        .my-form p{
+            color: red;
+            margin-left: 10px;
+            font-size: .8em;
+            display: none;
+        }
+        #modal{
+            position: absolute;
+            right: 340px;
+            top:120px;
+            opacity: 0;
+            width: 250px;
+            background: #96f7a2;
+            padding: 10px 40px;
+            box-shadow: 0px 0px 10px #00000017;
+        }
+        #modal h2{
+            text-align: center;
+        }
+        #modal p{
+            margin: 10px 0px;
+        }
+        #modal span{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Welcome to the Codingdojo plan-a-Cruise!</h1>
+        <form action="other.php" class="my-form">
+            <div class="form-group">
+                <label for="from">From:</label>
+                <input type="text" class="dates" id="from" autocomplete="off">
+                <p>Required Field</p>
+            </div>
+            <div class="form-group">
+                <label for="to">To:</label>
+                <input type="text" class="dates" id="to" autocomplete="off">
+                <p>Required Field</p>
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name">
+                <p>Your name can't be blank</p>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Check Dates" autocomplete="off"> 
+            </div>
+        
+        </form>
+        <div id="modal">
+            <h2>Alert</h2>
+            <p>Thanks <span id="name-here">Tom!</span></p>
+            <p>Your Cruise leaves on <span id="from-date-here">02/10/2020</span> and returns on <span id="to-date-here">02/15/2020</span></p>
+        </div>
+    </div>
+    <script>
+
+        function reset_form(){
+            $('#name').val('');
+            $('#from').val('');
+            $('#to').val('');
+        }
+
+        function assign_form(){
+            $('#name-here').html($('#name').val());
+            $('#from-date-here').html($('#from').val());
+            $('#to-date-here').html($('#to').val());
+        }
+
+        $(document).ready(function(){
+            $('.dates').datepicker();
+
+            $('.my-form').submit(function(){
+                var name = $('#name');
+                var fromDate = $('#from');
+                var toDate = $('#to');
+
+                if(name.val().length == 0){
+                    name.siblings('p').css('display','inline-block');
+                }
+                if(fromDate.val().length == 0){
+                    fromDate.siblings('p').css('display','inline-block'); 
+                }
+                if(toDate.val().length == 0){
+                    toDate.siblings('p').css('display','inline-block'); 
+                }
+
+
+                // 340 to 140
+                if(name.val().length != 0 && fromDate.val().length != 0 && toDate.val().length != 0){
+                    name.siblings('p').fadeOut(200);
+                    fromDate.siblings('p').fadeOut(200);
+                    toDate.siblings('p').fadeOut(200);
+
+                  
+                    assign_form();
+                    reset_form();
+
+                    $('#modal').animate({
+                        opacity: 1,
+                        right:140
+                    },1000);
+
+                    setTimeout(function(){
+                        $('#modal').animate({
+                            opacity: 0,
+                            right:40
+                        },1000);
+                    },5000);
+                }
+               
+
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

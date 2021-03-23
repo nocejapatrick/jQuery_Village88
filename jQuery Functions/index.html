@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery - Functions</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        .container {
+            max-width: 900px;
+        }
+
+        .big-button {
+            flex: 0 0 15%;
+        }
+
+        .big-button a {
+            background-color: #343a40;
+            color: white;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            padding: 45px 0px;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            transition: .2s all ease-in-out;
+        }
+
+        .big-button a:hover {
+            background-color: #68737d;
+        }
+
+        .box-shadow {
+            box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 5%);
+        }
+
+        .show-res {
+            display: none;
+        }
+
+        .slide-down-res {
+            display: none;
+        }
+
+        a[disable="disable"] {
+            cursor: not-allowed;
+            background: gray;
+        }
+
+        a[disable="disable"]:hover {
+            cursor: not-allowed;
+            background: gray;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header class="jquery-header row jusify-content-between align-items-center py-2 border-bottom">
+            <a href="#" class="text-muted col-md-4">Patrick Noceja</a>
+            <h1 class="col-md-4 text-center">JQuery</h1>
+            <a href="#" class="text-muted col-md-4 text-right">Something!</a>
+        </header>
+        <div class="sticky-top bg-white box-shadow px-5">
+            <nav class="nav justify-content-between">
+                <a href="#" class="text-dark py-3" data-event="add-class">AddClass</a>
+                <a href="#" class="text-dark py-3" data-event="slide-toggle">SlideToggle</a>
+                <a href="#" class="text-dark py-3" data-event="append">Append</a>
+                <a href="#" class="text-dark py-3" data-event="hide">Hide</a>
+                <a href="#" class="text-dark py-3" data-event="show">Show</a>
+                <a href="#" class="text-dark py-3" data-event="toggle">Toggle</a>
+                <a href="#" class="text-dark py-3" data-event="slide-down">SlideDown</a>
+                <a href="#" class="text-dark py-3" data-event="slide-up">SlideUp</a>
+                <a href="#" class="text-dark py-3" data-event="fade-in">FadeIn</a>
+            </nav>
+            <nav class="nav sticky-top bg-white justify-content-between">
+                <a href="#" class="text-dark py-3" data-event="fade-out">FadeOut</a>
+                <a href="#" class="text-dark py-3" data-event="before">Before</a>
+                <a href="#" class="text-dark py-3" data-event="after">After</a>
+                <a href="#" class="text-dark py-3" data-event="html">HTML</a>
+                <a href="#" class="text-dark py-3" data-event="attr">ATTR</a>
+                <a href="#" class="text-dark py-3" data-event="val">VAL</a>
+                <a href="#" class="text-dark py-3" data-event="text">TEXT</a>
+                <a href="#" class="text-dark py-3" data-event="click">Click</a>
+            </nav>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card flex-md-row box-shadow h-md-50 my-3" id="add-class">
+                    <div class="big-button d-flex align-items-center">
+                        <a href="#" id="add-class-btn">Click!</a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="m-0">Add Class</h3>
+                        <p class="my-2 add-class-res">Click the button to add class <span
+                                class="text-danger">text-danger</span> to this paragraph</p>
+                    </div>
+                </div>
+
+                <div class="card flex-md-row box-shadow h-md-50 my-4" id="slide-toggle">
+                    <div class="big-button d-flex align-items-center">
+                        <a href="#" id="slide-toggle-btn">Click!</a>
+                    </div>
+                    <div class="card-body position-relative">
+                        <h3 class="m-0">Slide Toggle</h3>
+                        <p class="my-2">Click the button to <span class="font-weight-bold"> slidetoggle</span> a hidden
+                            image</p>
+                        <img src="http://www.gamasutra.com/db_area/images/news/2018/Jun/320213/supermario64thumb1.jpg" class="position-absolute slide-toggle-res"
+                            style="right:0px;top:0px;width:114px;display:none;" alt="">
+                    </div>
+                </div>
+
+                <div class="card flex-md-row box-shadow h-md-50 my-4" id="append">
+                    <div class="big-button d-flex align-items-center">
+                        <a href="#" id="append-btn">Click!</a>
+                    </div>
+                    <div class="card-body append-res">
+                        <h3 class="m-0">Append</h3>
+                        <p class="my-2">Click the button to <span class="font-weight-bold"> append</span> a new
+                            paragraph</p>
+                    </div>
+                </div>
+
+
+                <div class="card flex-md-row box-shadow h-md-50 my-4" id="hide">
+                    <div class="big-button d-flex align-items-center">
+                        <a href="#" id="hide-btn">Click!</a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="m-0">Hide</h3>
+                        <p class="my-2 hide-res">Click the button to <span class="font-weight-bold"> hide</span> a this
+                            paragraph</p>
+                    </div>
+                </div>
+
+                <div class="card flex-md-row box-shadow h-md-50 my-4" id="show">
+                    <div class="big-button d-flex align-items-center">
+                        <a href="#" id="show-btn">Click!</a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="m-0">Show</h3>
+                        <p class="my-2">Click the button to <span class="font-weight-bold"> show</span> a hidden
+                            paragraph</p>
+                        <p class="show-res">Hidden Paragraph</p>
+                    </div>
+                </div>
+
+                <div class="card flex-md-row box-shadow h-md-50 my-4" id="toggle">
+                    <div class="big-button d-flex align-items-center">
+                        <a href="#" id="toggle-btn">Click!</a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="m-0">Toggle</h3>
+                        <p class="my-2 toggle-res">Click the button to <span class="font-weight-bold"> toggle</span>
+                            this paragraph</p>
+                    </div>
+                </div>
+
+                <div class="card flex-md-row box-shadow h-md-50 my-4" id="slide-down">
+                    <div class="big-button d-flex align-items-center">
+                        <a href="#" id="slide-down-btn">Click!</a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="m-0 slide-down-res">Slide Down</h3>
+                        <p class="my-2">Click the button to <span class="font-weight-bold"> slide down</span> the head
+                            tag</p>
+                    </div>
+                </div>
+
+                <div class="card flex-md-row box-shadow h-md-50 my-4" id="slide-up">
+                    <div class="big-button d-flex align-items-center">
+                        <a href="#" id="slide-up-btn">Click!</a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="m-0">Slide Up</h3>
+                        <p class="my-2 slide-up-res">Click the button to <span class="font-weight-bold"> slide up</span>
+                            this paragraph</p>
+                    </div>
+                </div>
+
+                <div class="card flex-md-row box-shadow h-md-50 my-4" id="fade-in">
+                    <div class="big-button d-flex align-items-center">
+                        <a href="#" id="fade-in-btn">Click!</a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="m-0 fade-in-res" style="display:none;">Fade In</h3>
+                        <p class="my-2">Click the button to <span class="font-weight-bold"> fade in</span> the head tag
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card flex-md-row box-shadow h-md-50 my-4" id="fade-out">
+                    <div class="big-button d-flex align-items-center">
+                        <a href="#" id="fade-out-btn">Click!</a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="m-0">Fade Out</h3>
+                        <p class="my-2 fade-out-res">Click the button to <span class="font-weight-bold"> fade out</span>
+                            this paragraph</p>
+                    </div>
+                </div>
+
+                <div class="card flex-md-row box-shadow h-md-50 my-4" id="before">
+                    <div class="big-button d-flex align-items-center">
+                        <a href="#" id="before-btn">Click!</a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="m-0">Before</h3>
+                        <p class="my-2 before-res">Click the button to add a paragraph<span class="font-weight-bold">
+                                before</span> this paragraph</p>
+                    </div>
+                </div>
+
+                <div class="card flex-md-row box-shadow h-md-50 my-4" id="after">
+                    <div class="big-button d-flex align-items-center">
+                        <a href="#" id="after-btn">Click!</a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="m-0">After</h3>
+                        <p class="my-2 after-res">Click the button to add a paragraph<span class="font-weight-bold">
+                                after</span> this paragraph</p>
+                    </div>
+                </div>
+
+
+                <div class="card flex-md-row box-shadow h-md-50 my-4" id="html">
+                    <div class="big-button d-flex align-items-center">
+                        <a href="#" id="html-btn">Click!</a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="m-0">HTML</h3>
+                        <p class="my-2 html-res">Click the button to <span class="font-weight-bold"> change the
+                                innerHTML</span> of this paragraph</p>
+                    </div>
+                </div>
+
+
+                <div class="card flex-md-row box-shadow h-md-50 my-4" id="attr">
+                    <div class="big-button d-flex align-items-center">
+                        <a href="#" id="attr-btn">Click!</a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="m-0">ATTR</h3>
+                        <p class="my-2">Click the button to add disable <span class="font-weight-bold"> attribute</span>
+                            on the same button</p>
+                    </div>
+                </div>
+
+
+                <div class="card flex-md-row box-shadow h-md-50 my-4" id="val">
+                    <div class="big-button d-flex align-items-center">
+                        <a href="#" id="val-btn" style="padding:63px 0px;">Click!</a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="m-0">VAL</h3>
+                        <p class="my-2">Click the button to change the<span class="font-weight-bold"> value </span>of
+                            the input below</p>
+                        <input type="text" value="Gotta Change" class="form-control val-res">
+                    </div>
+                </div>
+
+                <div class="card flex-md-row box-shadow h-md-50 my-4" id="text">
+                    <div class="big-button d-flex align-items-center">
+                        <a href="#" id="text-btn">Click!</a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="m-0">TEXT</h3>
+                        <p class="my-2 text-res">Click the button to change the<span class="font-weight-bold">
+                                text</span> of this paragraph</p>
+                    </div>
+                </div>
+
+                <div class="card flex-md-row box-shadow h-md-50 my-4" id="click">
+                    <div class="big-button d-flex align-items-center">
+                        <a href="#" id="click-btn" style="padding: 57px 0px;">Click!</a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="m-0">Click</h3>
+                        <p class="my-2 click-res">Click the button to click the other<span class="font-weight-bold">
+                                button</span> below</p>
+                        <a href="#" id="other-click-btn">Clicking this button will change it's innertHTML to
+                            'Clicked!!'</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('a').click(function (e) {
+                e.preventDefault();
+            });
+
+            $('#add-class-btn').click(function () {
+                $('.add-class-res').addClass('text-danger');
+            });
+
+            $('#slide-toggle-btn').click(function () {
+                $('.slide-toggle-res').slideToggle('slow');
+            });
+
+            $('#append-btn').click(function () {
+                var el = $(`<p class="my-2">Appended paragpraph!</p>`)
+                $('.append-res').append(el);
+            });
+
+            $('#hide-btn').click(function () {
+                $('.hide-res').hide();
+            });
+
+            $('#show-btn').click(function () {
+                $('.show-res').show();
+            });
+
+            $('#toggle-btn').click(function () {
+                $('.toggle-res').toggle();
+            });
+
+            $('#slide-down-btn').click(function () {
+                $('.slide-down-res').slideDown('slow');
+            });
+
+            $('#slide-up-btn').click(function () {
+                $('.slide-up-res').slideUp('slow');
+            });
+
+            $('#fade-in-btn').click(function () {
+                $('.fade-in-res').fadeIn('slow');
+            });
+
+            $('#fade-out-btn').click(function () {
+                $('.fade-out-res').fadeOut('slow');
+            });
+
+            $('#before-btn').click(function () {
+                $('.before-res').before("<p class='my-2'>This is a before paragraph</p>");
+            });
+
+            $('#after-btn').click(function () {
+                $('.after-res').after("<p class='my-2'>This is a after paragraph</p>");
+            });
+
+            $('#html-btn').click(function () {
+                $('.html-res').html("Paragraph  <span class='font-weight-bold'>innerHTML</span> changed");
+            });
+
+            $('#attr-btn').click(function () {
+                $(this).attr('disable', 'disable');
+            });
+
+            $('#val-btn').click(function () {
+                $('.val-res').val('Changed');
+            });
+
+            $('#text-btn').click(function () {
+                $('.text-res').text("Changed into new text");
+            });
+
+            $('#other-click-btn').click(function () {
+                $(this).html('Clicked!!');
+            });
+
+            $('#click-btn').click(function () {
+                $('#other-click-btn').click();
+            });
+
+            function scrollToAnchor(aid) {
+                var aTag = $("id");
+               
+            }
+
+            $('.nav a').click(function(){
+                var ev = $(this).data('event');
+                var elTop = $('#'+ev).offset().top;
+                $('html,body').animate({ scrollTop: elTop-120}, 'slow');
+            });
+
+        });
+
+    </script>
+</body>
+
+</html>
